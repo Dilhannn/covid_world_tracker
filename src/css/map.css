@@ -1,0 +1,9 @@
+/* src/css/Map.css */
+.map-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; 
+  }
+
+  
