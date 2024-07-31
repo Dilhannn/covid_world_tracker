@@ -269,7 +269,7 @@ function Map() {
 		              "x-rapidapi-host": "covid-19-statistics.p.rapidapi.com",
                 }
               }).then(result => {
-                console.log(result);
+                // console.log(result);
                 dispatch(setCountryData(result.data));
                 navigate(`/country/${newData[0].iso}`);
               })
