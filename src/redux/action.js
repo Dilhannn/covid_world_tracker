@@ -1,4 +1,3 @@
-// src/redux/actions.js
 
 import { SET_COUNTRY_DATA,FETCH_COUNTRY_DATA_REQUEST  } from './constant';
 

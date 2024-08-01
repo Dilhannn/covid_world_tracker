@@ -1,13 +1,15 @@
-import * as React from "react";
+import React, { useState } from 'react';
 import axios from 'axios';
 import WorldMap from "react-svg-worldmap";
-import { useNavigate } from 'react-router-dom'; 
+import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { setCountryData } from '../redux/action'; 
+import { setCountryData } from '../redux/action';
 import "../css/map.css";
+import Alert from './alert';
 function Map() {
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+  // const [showAlert, setShowAlert] = useState(false);
   const data = [
     { "country": "af", "name": "Afghanistan", "value": 100 },
     { "country": "al", "name": "Albania", "value": 100 },
@@ -244,6 +246,7 @@ function Map() {
 
   return (
     <div className="map-container">
+      {/* {showAlert && <Alert message={'There is no information about this country'} onClose={() => setShowAlert(false)} />} */}
       <WorldMap
         color="red"
         title="Top 10 Populous Countries"
@@ -255,23 +258,27 @@ function Map() {
 
           axios.get('https://covid-19-statistics.p.rapidapi.com/regions', {
             headers: {
-              'x-rapidapi-key': '48fd0a9458mshec0ec2919e02a11p10cf0cjsn6d4c4f224d03', 
+              'x-rapidapi-key': '48fd0a9458mshec0ec2919e02a11p10cf0cjsn6d4c4f224d03',
               'x-rapidapi-host': 'covid-19-statistics.p.rapidapi.com'
             }
           }).then(response => {
             const newData = response.data.data.filter((item) => {
               return item.name === e.countryName;
-            })    
-            if(newData.length > 0){
+            })
+            if (newData.length > 0) {
               axios.get(`https://covid-19-statistics.p.rapidapi.com/reports?iso=${newData[0].iso}`, {
-                headers:{
+                headers: {
                   "x-rapidapi-key": "48fd0a9458mshec0ec2919e02a11p10cf0cjsn6d4c4f224d03",
-		              "x-rapidapi-host": "covid-19-statistics.p.rapidapi.com",
+                  "x-rapidapi-host": "covid-19-statistics.p.rapidapi.com",
                 }
               }).then(result => {
-                // console.log(result);
+                console.log(result);
                 dispatch(setCountryData(result.data));
-                navigate(`/country/${newData[0].iso}`);
+                // if (result.data > 0) {
+                  navigate(`/country/${newData[0].iso}`);
+                // } else {
+                //   setShowAlert(true);
+                // }
               })
             }
           });

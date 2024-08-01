@@ -1,4 +1,3 @@
-// src/redux/reducer.js
 
 import { SET_COUNTRY_DATA } from './constant';
 

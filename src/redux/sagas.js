@@ -1,4 +1,3 @@
-// sagas.js
 import { call, put, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
 import { SET_COUNTRY_DATA, FETCH_COUNTRY_DATA_REQUEST } from './constant';
