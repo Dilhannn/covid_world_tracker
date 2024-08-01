@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+// import React, { useState } from 'react';
 import axios from 'axios';
 import WorldMap from "react-svg-worldmap";
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setCountryData } from '../redux/action';
 import "../css/map.css";
-import Alert from './alert';
+// import Alert from './alert';
 function Map() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
