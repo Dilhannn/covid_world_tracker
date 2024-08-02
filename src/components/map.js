@@ -247,7 +247,7 @@ function Map() {
     <div className="map-container">
       <WorldMap
         color="red"
-        title="Top 10 Populous Countries"
+        title={<span style={{ fontSize: '24px', fontWeight: 'bold' }}>World Covid Statistics Map </span>}
         size="xl"
         data={data}
         className="world-map"
@@ -275,8 +275,8 @@ function Map() {
                   navigate(`/country/${newData[0].iso}`);
                  }else{
                   Swal.fire({
-                    text: 'dkjhfsdas',
-                    title: 'DENEME'
+                    icon: "error",
+                    text: 'There is no information about this country.Please try another country',
                   });
                  }
               })
