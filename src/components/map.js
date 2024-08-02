@@ -1,15 +1,14 @@
-// import React, { useState } from 'react';
+ import React from 'react';
 import axios from 'axios';
 import WorldMap from "react-svg-worldmap";
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setCountryData } from '../redux/action';
+import Swal from 'sweetalert2';
 import "../css/map.css";
-// import Alert from './alert';
 function Map() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  // const [showAlert, setShowAlert] = useState(false);
   const data = [
     { "country": "af", "name": "Afghanistan", "value": 100 },
     { "country": "al", "name": "Albania", "value": 100 },
@@ -246,11 +245,9 @@ function Map() {
 
   return (
     <div className="map-container">
-      {/* {showAlert && <Alert message={'There is no information about this country'} onClose={() => setShowAlert(false)} />} */}
       <WorldMap
         color="red"
         title="Top 10 Populous Countries"
-        valueSuffix="people"
         size="xl"
         data={data}
         className="world-map"
@@ -274,11 +271,14 @@ function Map() {
               }).then(result => {
                 console.log(result);
                 dispatch(setCountryData(result.data));
-                // if (result.data > 0) {
+                if (result.data.data.length > 0) {
                   navigate(`/country/${newData[0].iso}`);
-                // } else {
-                //   setShowAlert(true);
-                // }
+                 }else{
+                  Swal.fire({
+                    text: 'dkjhfsdas',
+                    title: 'DENEME'
+                  });
+                 }
               })
             }
           });
